@@ -21,4 +21,23 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  menu      Menu[]
+}
+
+model Menu {
+  id        Int      @id @default(autoincrement())
+  jenisMenu String
+  hari      Int
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  foods     Food[]
+}
+
+model Food {
+  id        Int      @id @default(autoincrement())
+  foodId    Int
+  jumlah    Int
+  kalori    Int
+  menuId    Int
+  menu      Menu     @relation(fields: [menuId], references: [id])
 }
