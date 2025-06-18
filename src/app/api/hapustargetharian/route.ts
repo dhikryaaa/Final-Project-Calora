@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/lib/prisma";
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/lib/auth";
 
-export async function DELETE(req: NextRequest) {
+export async function DELETE() {
   try {
     // const session = await getServerSession(authOptions);
     // if (!session || !session.user || !session.user.id) {
@@ -14,14 +14,11 @@ export async function DELETE(req: NextRequest) {
 
     const userId = 6; // replace with session user in production
 
-    const body = await req.json();
-    const { date } = body;
-
-    if (!date || !userId) {
-      return NextResponse.json({ error: "Date and userId are required" }, { status: 400 });
+    if (!userId) {
+      return NextResponse.json({ error: "userId are required" }, { status: 400 });
     }
 
-    const parsedDate = new Date(date);
+    const parsedDate = new Date();
     parsedDate.setUTCHours(0, 0, 0, 0);
 
     const existingTarget = await db.dailyTarget.findUnique({

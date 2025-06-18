@@ -17,9 +17,9 @@ export async function POST(req: NextRequest) {
     const userId = 6; // For testing purposes, replace with session.user.id in production
 
     const body = await req.json();
-    const { date, target } = body;
+    const { target } = body;
 
-    const tanggal = new Date(date);
+    const tanggal = new Date();
     tanggal.setUTCHours(0, 0, 0, 0);
 
     const existingTarget = await db.dailyTarget.findUnique({
