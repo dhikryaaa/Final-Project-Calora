@@ -5,7 +5,6 @@ import Link from "next/link";
 export default async function GreetingPage() {
   const session = await getServerSession(authOptions);
 
-
   if (session?.user){
     return (
       <main className="min-h-screen flex items-center justify-center bg-blue-600">

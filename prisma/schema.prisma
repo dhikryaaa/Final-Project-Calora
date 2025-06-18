@@ -22,12 +22,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   menu      Menu[]
+  DailyTarget DailyTarget[]
 }
 
 model Menu {
   id        Int      @id @default(autoincrement())
   jenisMenu String
-  hari      Int
+  hari      DateTime  
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   foods     Food[]
@@ -36,8 +37,18 @@ model Menu {
 model Food {
   id        Int      @id @default(autoincrement())
   foodId    Int
-  jumlah    Int
+  takaran   Int
   kalori    Int
   menuId    Int
   menu      Menu     @relation(fields: [menuId], references: [id])
+}
+
+model DailyTarget {
+  id        Int      @id @default(autoincrement())
+  target    Int
+  userId    Int
+  date      DateTime
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, date])
 }

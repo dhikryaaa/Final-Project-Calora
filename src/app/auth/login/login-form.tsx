@@ -54,7 +54,7 @@ export default function LoginForm() {
       setError("Invalid email or password");
     } else {
       router.refresh();
-      router.push('/pages/greeting');
+      router.push('/pages/greeting'); //Nanti diganti ke dashboard
     }
   };
 
@@ -108,7 +108,7 @@ export default function LoginForm() {
                 {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
+                Dont have an account?{" "}
                 <Link href="/auth/register" className="underline underline-offset-4">
                   Sign up
                 </Link>
