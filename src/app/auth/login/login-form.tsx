@@ -54,7 +54,7 @@ export default function LoginForm() {
       setError("Invalid email or password");
     } else {
       router.refresh();
-      router.push('/pages/greeting'); //Nanti diganti ke dashboard
+      router.push('/pages/dashboard'); //Nanti diganti ke dashboard
     }
   };
 
