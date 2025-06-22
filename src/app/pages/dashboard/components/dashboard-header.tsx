@@ -9,10 +9,10 @@ async function DashboardHeader() {
   return (
     <>
       <div className='p-4'>
-        <div className='text-2xl'>
+        <div className='text-3xl'>
           {'Welcome Back, ' + session?.user.username }
         </div>
-        <div className='text'>
+        <div className='text-xl'>
           {format(Date.now(), 'MMM dd, yyyy')}
         </div>
       </div>

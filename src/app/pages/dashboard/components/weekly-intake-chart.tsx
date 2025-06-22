@@ -43,7 +43,7 @@ const chartConfig = {
 
 export function IntakeBarChart() {
   return (
-        <ChartContainer config={chartConfig} className="h-90 w-full">
+        <ChartContainer config={chartConfig} className="h-100 w-full">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <YAxis

@@ -35,6 +35,9 @@ function DayBarChart() {
                     Calorie Intake vs Daily Goal
                 </CardDescription>
             </CardHeader>
+            <CardContent>
+                
+            </CardContent>
         </Card>
     </div>
   )

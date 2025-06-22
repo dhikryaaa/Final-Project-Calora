@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { z } from 'zod';
+import { toast } from "sonner";
 
 // Zod schema for Sign In
 const SignInSchema = z.object({
@@ -55,6 +56,7 @@ export default function LoginForm() {
     } else {
       router.refresh();
       router.push('/pages/dashboard'); //Nanti diganti ke dashboard
+      toast.success("Successfully logged in!")
     }
   };
 

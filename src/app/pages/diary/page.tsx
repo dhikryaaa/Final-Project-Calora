@@ -1,9 +1,14 @@
 import React from 'react'
+import DiaryHeader from './components/diary-header'
+import MainDiary from './components/main-diary'
 
-function page() {
+function Page() {
   return (
-    <div>page</div>
+    <div>
+      <DiaryHeader />
+      <MainDiary />
+    </div>
   )
 }
 
-export default page
+export default Page

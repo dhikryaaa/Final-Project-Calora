@@ -18,12 +18,12 @@ import {
   IconSettings,
   IconUsers,
   IconLogout,
-  IconInfoCircle
+  IconInfoCircle,
+  IconPencil
 } from "@tabler/icons-react"
 
 import { NavDocuments } from "@/components/sidebar/nav-documents"
 import { NavMain } from "@/components/sidebar/nav-main"
-import { NavSecondary } from "@/components/sidebar/nav-secondary"
 import {
   Sidebar,
   SidebarContent,
@@ -45,6 +45,11 @@ const data = {
       title: "Diary",
       url: "/pages/diary",
       icon: IconListDetails,
+    },
+    {
+      title: "Log Food",
+      url: "/pages/logfood",
+      icon: IconPencil,
     },
     {
       title: "Target",
