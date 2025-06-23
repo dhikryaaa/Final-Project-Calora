@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+// import { authOptions } from "@/lib/auth";
+// import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay, startOfWeek, endOfWeek } from "date-fns";
 
 export async function GET() {
@@ -32,10 +34,9 @@ export async function GET() {
     });
 
     const categoryCalories = {
-      "Sarapan": 0,
-      "Makan Siang": 0,
-      "Makan Malam": 0,
-      "Cemilan": 0,
+      "Breakfast": 0,
+      "Lunch": 0,
+      "Dinner": 0,
     };
 
     for (const menu of todayMenus) {

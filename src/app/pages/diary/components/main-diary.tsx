@@ -4,13 +4,10 @@ import {
   Card,
   CardAction,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { dummyMenus } from "./dummy"
-import { IconPlus } from '@tabler/icons-react'
 import AddFoodButton from './add-food-button'
 
 export interface Menu {
@@ -18,35 +15,77 @@ export interface Menu {
     jenisMenu: string,
     userId: number,
     hari: Date,
-    Foods: {
-        id: number,
-        foodName: string,
-        foodId: number,
-        kalori: number,
-        menuId: number,
-        originalServing: string,
-        takaran: number
-    }[]
+    Foods: Food[]
 }
 
+export interface Food {
+  id: number,
+  foodId: number,
+  kalori: number,
+  menuId: number,
+  takaran: number,
+  namaMakanan: string,
+  takaranAwal: number
+}
 
 function MainDiary() {
   const menus = ["Breakfast", "Lunch", "Dinner"]
   const [Diary, setDiary] = useState<Menu[] | null>(null)
 
-  useEffect(() => {
-    setDiary(dummyMenus)
-  },[])
+   useEffect(() => {
+    async function fetchDiary() {
+      try {
+        const res = await fetch("/api/diarymakanan");
+        
+        if (!res.ok) throw new Error("Failed to fetch diary");
 
-  function handleRemove(foodId: number){
-    if (!Diary) return;
+        const data: Record<string, Food[]> = await res.json();
 
-    const updatedDiary = Diary.map(menu => {
-        const updatedFoods = menu.Foods.filter(food => food.id !== foodId);
-        return { ...menu, Foods: updatedFoods };
-    });
+        const formatted: Menu[] = Object.entries(data).map(([jenisMenu, foods]) => ({
+          id: 0,
+          jenisMenu,
+          userId: 0,
+          hari: new Date(),
+          Foods: foods.map(food => ({
+            id: food.id,
+            namaMakanan: food.namaMakanan,
+            foodId: food.foodId,
+            kalori: food.kalori,
+            menuId: food.menuId,
+            takaranAwal: food.takaranAwal,
+            takaran: food.takaran,
+          }))
+        }));
 
-    setDiary(updatedDiary);
+        setDiary(formatted);
+      } catch (err) {
+        console.error("Error fetching diary:", err);
+      }
+    }
+
+    fetchDiary();
+  }, []);
+
+  async function handleRemove(foodId: number){
+    try{
+      const res = await fetch("/api/hapusmakanan", {
+        method: "DELETE",
+        body: JSON.stringify({ id: foodId }),
+      })
+
+      if (!res.ok) throw new Error("Failed to delete food");
+
+      if (!Diary) return;
+
+      const updatedDiary = Diary.map(menu => {
+          const updatedFoods = menu.Foods.filter(food => food.id !== foodId);
+          return { ...menu, Foods: updatedFoods };
+      });
+
+      setDiary(updatedDiary);
+    } catch (error){
+      console.error("Error removing food:", error)
+    }
   }
 
   return (
@@ -65,9 +104,9 @@ function MainDiary() {
                 menu.Foods.map(food => (
                   <Card key={food.id} className='@container/card w-full my-4'>
                     <CardHeader>
-                      <CardTitle>{food.foodName}</CardTitle>
+                      <CardTitle>{food.namaMakanan}</CardTitle>
                       <CardDescription>
-                        {food.kalori} kcal / {food.originalServing} x {food.takaran}
+                        {food.kalori} kcal / {food.takaranAwal} x {food.takaran}
                       </CardDescription>
                       <CardAction>  
                         <Button variant="destructive" onClick={() => handleRemove(food.id)}>

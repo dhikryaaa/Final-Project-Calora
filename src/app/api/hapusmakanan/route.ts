@@ -3,32 +3,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { foodId, menuId } = body;
+    const { id } = await req.json();
 
-    if (!foodId) {
-      return NextResponse.json({ error: "Missing foodId fields" }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: "Missing id field" }, { status: 400 });
     }
 
-    const foodDate = new Date();
-    foodDate.setUTCHours(0, 0, 0, 0);
-
-    const existingTarget = await db.food.findFirst({
-      where: {
-        foodId,
-        menuId
-      },
+    const existingFood = await db.food.findUnique({
+      where: { id },
     });
 
-    if (!existingTarget) {
+    if (!existingFood) {
       return NextResponse.json({ error: "Food not found" }, { status: 404 });
     }
 
-    const deletedFood = await db.food.deleteMany({
-      where: {
-        foodId,
-        menuId
-      },
+    const deletedFood = await db.food.delete({
+      where: { id },
     });
 
     return NextResponse.json({ success: true, deletedFood });
