@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import IntakeBarChart from './weekly-intake-chart'
+import DailyIntakeChart from './daily-intake-chart'
 
 function DayBarChart() {
   return (
@@ -26,7 +27,7 @@ function DayBarChart() {
                 <IntakeBarChart />
             </CardContent>
         </Card>
-        <Card>
+        <Card className='space-y-10'>
             <CardHeader>
                 <CardTitle>
                     Today's Calorie
@@ -36,7 +37,7 @@ function DayBarChart() {
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                
+                <DailyIntakeChart />
             </CardContent>
         </Card>
     </div>

@@ -107,7 +107,7 @@ function MainDiary() {
                     <CardHeader>
                       <CardTitle>{food.namaMakanan}</CardTitle>
                       <CardDescription>
-                        {food.kalori} kcal / {food.takaranAwal} x {food.takaran}
+                        {food.kalori} cal / {food.takaranAwal} x {food.takaran}
                       </CardDescription>
                       <CardAction>  
                         <Button variant="destructive" onClick={() => handleRemove(food.id)}>

@@ -15,7 +15,7 @@ function TopCardGoal() {
         <CardHeader>
           <CardDescription>Breakfast</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            700 kcal
+            700 cal
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm text-muted-foreground">
@@ -26,7 +26,7 @@ function TopCardGoal() {
         <CardHeader>
           <CardDescription>Lunch</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            800 kcal
+            800 cal
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm text-muted-foreground">
@@ -37,7 +37,7 @@ function TopCardGoal() {
         <CardHeader>
           <CardDescription>Dinner</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            734 kcal
+            734 cal
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm text-muted-foreground">
