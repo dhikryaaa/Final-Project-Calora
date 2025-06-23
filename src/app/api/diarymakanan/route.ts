@@ -12,7 +12,11 @@ export async function GET() {
         return NextResponse.json({ error: "You must Log-in" }, { status: 401 });
     }
 
-    const userId = Number(session?.user.id);
+    const userId = Number(session.user.id);
+
+    if (!userId) {
+      return NextResponse.json({ error: "Users not found" }, { status: 404 });
+    }
 
     const today = new Date();
     const start = startOfDay(today);
