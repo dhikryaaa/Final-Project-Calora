@@ -1,18 +1,17 @@
 import { db } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { startOfDay } from "date-fns";
 
 export async function POST(req: NextRequest) {
   try {
-    // const session = await getServerSession(authOptions);
-    // if (!session || !session.user || !session.user.id) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    // const userId = Number(session.user.id);
-
-    const userId = 6; // replace with session user in production
+    const userId = Number(session.user.id);
 
     const body = await req.json();
     const { jenisMenu, foodId, takaran, kalori, namaMakanan, takaranAwal } = body;
@@ -21,8 +20,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    const targetDate = new Date();
-    targetDate.setUTCHours(0, 0, 0, 0);
+    const targetDate = startOfDay(new Date())
 
     const menu = await db.menu.findFirst({
       where: {

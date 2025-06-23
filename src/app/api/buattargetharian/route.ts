@@ -1,27 +1,24 @@
 import { db } from "@/lib/prisma";
+import { startOfDay } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 const JENIS_MENU = ["Breakfast", "Lunch", "Dinner"]; 
 
 export async function POST(req: NextRequest) {
   try {
-    // const session = await getServerSession(authOptions);
-    // if (!session || !session.user || !session.user.id) {
-    //     return NextResponse.json({ error: "You must Log-in" }, { status: 401 });
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+        return NextResponse.json({ error: "You must Log-in" }, { status: 401 });
+    }
 
-    // const userId = Number(session.user.id);
-
-    const userId = 6; // For testing purposes, replace with session.user.id in production
+    const userId = Number(session.user.id);
 
     const body = await req.json();
     const { target } = body;
 
-    const tanggal = new Date();
-    tanggal.setUTCHours(0, 0, 0, 0);
-
+    const tanggal = startOfDay(new Date())
     const existingTarget = await db.dailyTarget.findUnique({
       where: {
         userId_date: {

@@ -35,6 +35,7 @@ function MainDiary() {
    useEffect(() => {
     async function fetchDiary() {
       try {
+        
         const res = await fetch("/api/diarymakanan");
         
         if (!res.ok) throw new Error("Failed to fetch diary");
@@ -59,7 +60,7 @@ function MainDiary() {
 
         setDiary(formatted);
       } catch (err) {
-        console.error("Error fetching diary:", err);
+        console.error("Error fetching diary:" + err);
       }
     }
 

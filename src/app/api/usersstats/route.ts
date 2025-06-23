@@ -1,19 +1,17 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-// import { authOptions } from "@/lib/auth";
-// import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay, startOfWeek, endOfWeek } from "date-fns";
 
 export async function GET() {
   try {
-    // const session = await getServerSession(authOptions);
-    // if (!session || !session.user || !session.user.id) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    // const userId = Number(session.user.id);
-
-    const userId = 6; // replace with session user in production
+    const userId = Number(session.user.id);
 
     const today = new Date();
     if (!userId) return NextResponse.json({ error: "Missing userId" }, { status: 400 });

@@ -1,24 +1,22 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/prisma";
-// import { authOptions } from "@/lib/auth";
-// import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay } from "date-fns";
 
 export async function GET() {
   try {
-    // const session = await getServerSession(authOptions);
-    // if (!session || !session.user || !session.user.id) {
-    //     return NextResponse.json({ error: "You must Log-in" }, { status: 401 });
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+        return NextResponse.json({ error: "You must Log-in" }, { status: 401 });
+    }
 
-    // const userId = Number(session.user.id);
-
-    const userId = 6; // For testing purposes, replace with session.user.id in production
+    const userId = Number(session?.user.id);
 
     const today = new Date();
     const start = startOfDay(today);
     const end = endOfDay(today);
-
+    
     const menus = await db.menu.findMany({
       where: {
         userId,

@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card"
 import { Button } from '@/components/ui/button'
 import { IconPlus } from '@tabler/icons-react'
+import AddFoodDialog from './add-food-dialog'
 
-interface Foods {
+export interface Food {
     brand_name: string,
     food_description: string,
     food_id: string,
@@ -24,7 +25,7 @@ interface Props {
 }
 
 function FoodList({searchParams, menuType}: Props) {
-    const [foods, setFoods] = useState<Foods[]>();
+    const [foods, setFoods] = useState<Food[]>();
 
     useEffect(() => {
       const fetchFoods = async () => {
@@ -73,9 +74,7 @@ function FoodList({searchParams, menuType}: Props) {
                     {food.food_description}
                   </CardDescription>
                 </CardHeader>
-                <Button className='w-full h-full rounded-tl-none rounded-bl-none' variant='ghost'>
-                  <IconPlus className='scale-200'/>
-                </Button>
+                <AddFoodDialog menuType={menuType} food={food}/>
             </Card>
           </div>
         ))

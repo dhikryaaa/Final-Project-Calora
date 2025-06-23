@@ -52,8 +52,8 @@ const data = {
       icon: IconPencil,
     },
     {
-      title: "Target",
-      url: "/pages/target",
+      title: "Goal",
+      url: "/pages/goal",
       icon: IconChartBar,
     },
 

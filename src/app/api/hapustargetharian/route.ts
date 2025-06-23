@@ -1,25 +1,23 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/prisma";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { startOfDay } from "date-fns";
 
 export async function DELETE() {
   try {
-    // const session = await getServerSession(authOptions);
-    // if (!session || !session.user || !session.user.id) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    // const userId = Number(session.user.id);
-
-    const userId = 6; // replace with session user in production
+    const userId = Number(session.user.id);
 
     if (!userId) {
       return NextResponse.json({ error: "userId are required" }, { status: 400 });
     }
 
-    const parsedDate = new Date();
-    parsedDate.setUTCHours(0, 0, 0, 0);
+    const parsedDate = startOfDay(new Date())
 
     const existingTarget = await db.dailyTarget.findUnique({
       where: {
