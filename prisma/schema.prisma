@@ -36,7 +36,9 @@ model Menu {
 
 model Food {
   id        Int      @id @default(autoincrement())
+  namaMakanan String
   foodId    Int
+  takaranAwal String
   takaran   Int
   kalori    Int
   menuId    Int

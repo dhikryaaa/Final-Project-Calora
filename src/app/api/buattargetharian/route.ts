@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/lib/auth";
 
-const JENIS_MENU = ["Sarapan", "Makan Siang", "Makan Malam", "Cemilan"];
+const JENIS_MENU = ["BREAKFAST", "LUNCH", "DINNER", "SNACKS"];
 
 export async function POST(req: NextRequest) {
   try {

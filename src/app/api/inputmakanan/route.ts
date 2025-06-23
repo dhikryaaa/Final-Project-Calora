@@ -15,9 +15,9 @@ export async function POST(req: NextRequest) {
     const userId = 6; // replace with session user in production
 
     const body = await req.json();
-    const { jenisMenu, foodId, takaran, kalori } = body;
+    const { jenisMenu, foodId, takaran, kalori, namaMakanan, takaranAwal } = body;
 
-    if (!jenisMenu || !foodId || !takaran || !kalori) {
+    if (!jenisMenu || !foodId || !takaran || !kalori || !namaMakanan || !takaranAwal ) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
@@ -42,6 +42,8 @@ export async function POST(req: NextRequest) {
         takaran,
         kalori,
         menuId: menu.id,
+        namaMakanan,
+        takaranAwal
       },
     });
 

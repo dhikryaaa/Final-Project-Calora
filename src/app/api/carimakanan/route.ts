@@ -17,6 +17,7 @@ export async function GET(req: NextRequest) {
     method: "foods.search",
     format: "json",
     search_expression: query,
+    max_results: "6"
   };
 
   const signature = buildOAuthSignature("GET", API_URL, requestParams);
