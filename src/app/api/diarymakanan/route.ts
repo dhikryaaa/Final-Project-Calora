@@ -5,7 +5,6 @@ import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay } from "date-fns";
 
 
-
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);

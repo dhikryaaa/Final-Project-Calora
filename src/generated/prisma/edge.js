@@ -153,7 +153,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\Kuliah\\Semester-4\\IMK\\Final-Project-Calora\\src\\generated\\prisma",
+      "value": "C:\\Users\\andhi\\Documents\\GitHub-Tugas\\IMK\\Final-Project-Calora\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -167,7 +167,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\Kuliah\\Semester-4\\IMK\\Final-Project-Calora\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\andhi\\Documents\\GitHub-Tugas\\IMK\\Final-Project-Calora\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
