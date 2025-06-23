@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/prisma";
 // import { authOptions } from "@/lib/auth";
-// import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay } from "date-fns";
+import { authOptions } from "@/lib/auth";
+
 
 export async function GET() {
   try {
@@ -12,13 +14,16 @@ export async function GET() {
     // }
 
     // const userId = Number(session.user.id);
-
-    const userId = 6; // For testing purposes, replace with session.user.id in production
+    const session = await getServerSession(authOptions)
+    // if (!session?.user.id){
+    //   return
+    // }
+    const userId = Number(session?.user.id); // For testing purposes, replace with session.user.id in production
 
     const today = new Date();
     const start = startOfDay(today);
     const end = endOfDay(today);
-
+    
     const menus = await db.menu.findMany({
       where: {
         userId,

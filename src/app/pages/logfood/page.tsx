@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import useDebounce from '@/app/hooks/useDebounce'
 import FoodList from './components/food-list'
+import MenuTypeDropdown from './components/menu-type-dropdown'
 
 function Page() {
     const [mealType, setMealType] = useState<string>('')
@@ -31,10 +32,7 @@ function Page() {
         <div className='grid lg:grid-cols-1 xl:grid-cols-2 self-center'>
             <div className='space-y-2 mt-5 text-center gap-2 flex flex-col justify-center'>
                 <div className='flex justify-center'>
-                    <Button variant="ghost" className='text-3xl font-normal w-fit justify-center'>
-                        {mealType}
-                        <IconTriangleInvertedFilled />
-                    </Button>
+                    <MenuTypeDropdown menuType={mealType} onSelect={(value) => setMealType(value)}/>
                 </div>
                 <div className='flex justify-center'>
                     <Input  

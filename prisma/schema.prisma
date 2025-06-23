@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -15,42 +9,42 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  menu      Menu[]
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  username    String        @unique
+  password    String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   DailyTarget DailyTarget[]
+  menu        Menu[]
 }
 
 model Menu {
   id        Int      @id @default(autoincrement())
   jenisMenu String
-  hari      DateTime  
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
+  hari      DateTime
   foods     Food[]
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Food {
-  id        Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
+  foodId      Int
+  kalori      Int
+  menuId      Int
+  takaran     Int
   namaMakanan String
-  foodId    Int
   takaranAwal String
-  takaran   Int
-  kalori    Int
-  menuId    Int
-  menu      Menu     @relation(fields: [menuId], references: [id])
+  menu        Menu   @relation(fields: [menuId], references: [id])
 }
 
 model DailyTarget {
-  id        Int      @id @default(autoincrement())
-  target    Int
-  userId    Int
-  date      DateTime
-  user      User     @relation(fields: [userId], references: [id])
+  id     Int      @id @default(autoincrement())
+  target Int
+  userId Int
+  date   DateTime
+  user   User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, date])
 }
