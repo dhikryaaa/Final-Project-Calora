@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { startOfDay, endOfDay } from "date-fns";
 
+
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
@@ -16,6 +18,7 @@ export async function GET() {
     const today = new Date();
     const start = startOfDay(today);
     const end = endOfDay(today);
+    
     
     const menus = await db.menu.findMany({
       where: {
