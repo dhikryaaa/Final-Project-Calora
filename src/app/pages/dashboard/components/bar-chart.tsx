@@ -30,7 +30,7 @@ function DayBarChart() {
         <Card className='space-y-10'>
             <CardHeader>
                 <CardTitle>
-                    Today's Calorie
+                    Today&apos;s Calorie
                 </CardTitle>
                 <CardDescription>
                     Calorie Intake vs Daily Goal

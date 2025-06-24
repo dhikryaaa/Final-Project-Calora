@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 function MainGoal() {
   const [calorieGoal, setCalorieGoal] = useState<string>('')
 
-  function handleSubmit(){
+  async function handleSubmit(){
     if (!calorieGoal){
       return
     }
@@ -19,9 +19,25 @@ function MainGoal() {
     }
     
     const parsedGoal = parseInt(calorieGoal)
-    //pake parsed goal buat ke api
-  }
+    
+    try {
+      const res = await fetch("/api/buattargetharian", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          target: parsedGoal
+        })
+      })
 
+      const data = await res.json
+
+      if (!res.ok) throw new Error("Failed to Fetch Data")
+
+      toast.success("Daily target set successfully!")
+    } catch (error) {
+      console.error("Fetch error:", error)
+    }
+  }
   
   return (
     <div className='space-y-4'>

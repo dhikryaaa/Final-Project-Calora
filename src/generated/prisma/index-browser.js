@@ -153,6 +153,12 @@ exports.Prisma.DailyTargetScalarFieldEnum = {
   date: 'date'
 };
 
+exports.Prisma.DefaultTargetScalarFieldEnum = {
+  id: 'id',
+  value: 'value',
+  dailyId: 'dailyId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -168,7 +174,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Menu: 'Menu',
   Food: 'Food',
-  DailyTarget: 'DailyTarget'
+  DailyTarget: 'DailyTarget',
+  DefaultTarget: 'DefaultTarget'
 };
 
 /**

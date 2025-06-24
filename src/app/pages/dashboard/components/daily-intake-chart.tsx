@@ -1,11 +1,12 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BarChart,
   CartesianGrid,
   XAxis,
   Bar,
-  ResponsiveContainer
+  ResponsiveContainer,
+  YAxis
 } from "recharts"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
@@ -20,27 +21,51 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-const chartData = [
-  { intake: "2600", dailyGoal: 1260},
-]
-
-function getAngle(num: number){
-  
-}
-
 function DailyIntakeChart() {
+  const [chartData, setChartData] = useState([
+    { intake: 0, dailyGoal: 0 },
+  ])
+
+  const fetchChartData = async () => {
+    try {
+      const res = await fetch('/api/usersstats')
+      const data = await res.json()
+
+      if (!res.ok) {
+        console.error(data.error || 'Gagal fetch')
+        return
+      }
+
+      const total = data.totalHariIni || 0
+      const goal = data.targetHariIni || 0
+
+      setChartData([
+        {
+          intake: total,
+          dailyGoal: goal,
+        },
+      ])
+    } catch (err) {
+      console.error('Fetch error:', err)
+    }
+  }
+
+  useEffect(() => {
+    fetchChartData()
+  }, [])
+
   return (
     <div>
       <ResponsiveContainer width='100%' height={300}>
        <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
-            <XAxis
+            <YAxis
               dataKey="intake"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              // tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}

@@ -33,6 +33,11 @@ export type Food = $Result.DefaultSelection<Prisma.$FoodPayload>
  * 
  */
 export type DailyTarget = $Result.DefaultSelection<Prisma.$DailyTargetPayload>
+/**
+ * Model DefaultTarget
+ * 
+ */
+export type DefaultTarget = $Result.DefaultSelection<Prisma.$DefaultTargetPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get dailyTarget(): Prisma.DailyTargetDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.defaultTarget`: Exposes CRUD operations for the **DefaultTarget** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DefaultTargets
+    * const defaultTargets = await prisma.defaultTarget.findMany()
+    * ```
+    */
+  get defaultTarget(): Prisma.DefaultTargetDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     User: 'User',
     Menu: 'Menu',
     Food: 'Food',
-    DailyTarget: 'DailyTarget'
+    DailyTarget: 'DailyTarget',
+    DefaultTarget: 'DefaultTarget'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "menu" | "food" | "dailyTarget"
+      modelProps: "user" | "menu" | "food" | "dailyTarget" | "defaultTarget"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +976,80 @@ export namespace Prisma {
           }
         }
       }
+      DefaultTarget: {
+        payload: Prisma.$DefaultTargetPayload<ExtArgs>
+        fields: Prisma.DefaultTargetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DefaultTargetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DefaultTargetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          findFirst: {
+            args: Prisma.DefaultTargetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DefaultTargetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          findMany: {
+            args: Prisma.DefaultTargetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>[]
+          }
+          create: {
+            args: Prisma.DefaultTargetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          createMany: {
+            args: Prisma.DefaultTargetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DefaultTargetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>[]
+          }
+          delete: {
+            args: Prisma.DefaultTargetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          update: {
+            args: Prisma.DefaultTargetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          deleteMany: {
+            args: Prisma.DefaultTargetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DefaultTargetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DefaultTargetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>[]
+          }
+          upsert: {
+            args: Prisma.DefaultTargetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DefaultTargetPayload>
+          }
+          aggregate: {
+            args: Prisma.DefaultTargetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDefaultTarget>
+          }
+          groupBy: {
+            args: Prisma.DefaultTargetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DefaultTargetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DefaultTargetCountArgs<ExtArgs>
+            result: $Utils.Optional<DefaultTargetCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1138,7 @@ export namespace Prisma {
     menu?: MenuOmit
     food?: FoodOmit
     dailyTarget?: DailyTargetOmit
+    defaultTarget?: DefaultTargetOmit
   }
 
   /* Types for Logging */
@@ -1205,6 +1296,37 @@ export namespace Prisma {
    */
   export type MenuCountOutputTypeCountFoodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FoodWhereInput
+  }
+
+
+  /**
+   * Count Type DailyTargetCountOutputType
+   */
+
+  export type DailyTargetCountOutputType = {
+    defaultTarget: number
+  }
+
+  export type DailyTargetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    defaultTarget?: boolean | DailyTargetCountOutputTypeCountDefaultTargetArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DailyTargetCountOutputType without action
+   */
+  export type DailyTargetCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyTargetCountOutputType
+     */
+    select?: DailyTargetCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DailyTargetCountOutputType without action
+   */
+  export type DailyTargetCountOutputTypeCountDefaultTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DefaultTargetWhereInput
   }
 
 
@@ -4802,7 +4924,9 @@ export namespace Prisma {
     target?: boolean
     userId?: boolean
     date?: boolean
+    defaultTarget?: boolean | DailyTarget$defaultTargetArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | DailyTargetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dailyTarget"]>
 
   export type DailyTargetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4830,7 +4954,9 @@ export namespace Prisma {
 
   export type DailyTargetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "target" | "userId" | "date", ExtArgs["result"]["dailyTarget"]>
   export type DailyTargetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    defaultTarget?: boolean | DailyTarget$defaultTargetArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | DailyTargetCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DailyTargetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -4842,6 +4968,7 @@ export namespace Prisma {
   export type $DailyTargetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DailyTarget"
     objects: {
+      defaultTarget: Prisma.$DefaultTargetPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5243,6 +5370,7 @@ export namespace Prisma {
    */
   export interface Prisma__DailyTargetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    defaultTarget<T extends DailyTarget$defaultTargetArgs<ExtArgs> = {}>(args?: Subset<T, DailyTarget$defaultTargetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5673,6 +5801,30 @@ export namespace Prisma {
   }
 
   /**
+   * DailyTarget.defaultTarget
+   */
+  export type DailyTarget$defaultTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    where?: DefaultTargetWhereInput
+    orderBy?: DefaultTargetOrderByWithRelationInput | DefaultTargetOrderByWithRelationInput[]
+    cursor?: DefaultTargetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DefaultTargetScalarFieldEnum | DefaultTargetScalarFieldEnum[]
+  }
+
+  /**
    * DailyTarget without action
    */
   export type DailyTargetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5688,6 +5840,1080 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DailyTargetInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DefaultTarget
+   */
+
+  export type AggregateDefaultTarget = {
+    _count: DefaultTargetCountAggregateOutputType | null
+    _avg: DefaultTargetAvgAggregateOutputType | null
+    _sum: DefaultTargetSumAggregateOutputType | null
+    _min: DefaultTargetMinAggregateOutputType | null
+    _max: DefaultTargetMaxAggregateOutputType | null
+  }
+
+  export type DefaultTargetAvgAggregateOutputType = {
+    id: number | null
+    value: number | null
+    dailyId: number | null
+  }
+
+  export type DefaultTargetSumAggregateOutputType = {
+    id: number | null
+    value: number | null
+    dailyId: number | null
+  }
+
+  export type DefaultTargetMinAggregateOutputType = {
+    id: number | null
+    value: number | null
+    dailyId: number | null
+  }
+
+  export type DefaultTargetMaxAggregateOutputType = {
+    id: number | null
+    value: number | null
+    dailyId: number | null
+  }
+
+  export type DefaultTargetCountAggregateOutputType = {
+    id: number
+    value: number
+    dailyId: number
+    _all: number
+  }
+
+
+  export type DefaultTargetAvgAggregateInputType = {
+    id?: true
+    value?: true
+    dailyId?: true
+  }
+
+  export type DefaultTargetSumAggregateInputType = {
+    id?: true
+    value?: true
+    dailyId?: true
+  }
+
+  export type DefaultTargetMinAggregateInputType = {
+    id?: true
+    value?: true
+    dailyId?: true
+  }
+
+  export type DefaultTargetMaxAggregateInputType = {
+    id?: true
+    value?: true
+    dailyId?: true
+  }
+
+  export type DefaultTargetCountAggregateInputType = {
+    id?: true
+    value?: true
+    dailyId?: true
+    _all?: true
+  }
+
+  export type DefaultTargetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DefaultTarget to aggregate.
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DefaultTargets to fetch.
+     */
+    orderBy?: DefaultTargetOrderByWithRelationInput | DefaultTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DefaultTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DefaultTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DefaultTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DefaultTargets
+    **/
+    _count?: true | DefaultTargetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DefaultTargetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DefaultTargetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DefaultTargetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DefaultTargetMaxAggregateInputType
+  }
+
+  export type GetDefaultTargetAggregateType<T extends DefaultTargetAggregateArgs> = {
+        [P in keyof T & keyof AggregateDefaultTarget]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDefaultTarget[P]>
+      : GetScalarType<T[P], AggregateDefaultTarget[P]>
+  }
+
+
+
+
+  export type DefaultTargetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DefaultTargetWhereInput
+    orderBy?: DefaultTargetOrderByWithAggregationInput | DefaultTargetOrderByWithAggregationInput[]
+    by: DefaultTargetScalarFieldEnum[] | DefaultTargetScalarFieldEnum
+    having?: DefaultTargetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DefaultTargetCountAggregateInputType | true
+    _avg?: DefaultTargetAvgAggregateInputType
+    _sum?: DefaultTargetSumAggregateInputType
+    _min?: DefaultTargetMinAggregateInputType
+    _max?: DefaultTargetMaxAggregateInputType
+  }
+
+  export type DefaultTargetGroupByOutputType = {
+    id: number
+    value: number
+    dailyId: number
+    _count: DefaultTargetCountAggregateOutputType | null
+    _avg: DefaultTargetAvgAggregateOutputType | null
+    _sum: DefaultTargetSumAggregateOutputType | null
+    _min: DefaultTargetMinAggregateOutputType | null
+    _max: DefaultTargetMaxAggregateOutputType | null
+  }
+
+  type GetDefaultTargetGroupByPayload<T extends DefaultTargetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DefaultTargetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DefaultTargetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DefaultTargetGroupByOutputType[P]>
+            : GetScalarType<T[P], DefaultTargetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DefaultTargetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    value?: boolean
+    dailyId?: boolean
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["defaultTarget"]>
+
+  export type DefaultTargetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    value?: boolean
+    dailyId?: boolean
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["defaultTarget"]>
+
+  export type DefaultTargetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    value?: boolean
+    dailyId?: boolean
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["defaultTarget"]>
+
+  export type DefaultTargetSelectScalar = {
+    id?: boolean
+    value?: boolean
+    dailyId?: boolean
+  }
+
+  export type DefaultTargetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "value" | "dailyId", ExtArgs["result"]["defaultTarget"]>
+  export type DefaultTargetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }
+  export type DefaultTargetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }
+  export type DefaultTargetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    dailyTarget?: boolean | DailyTargetDefaultArgs<ExtArgs>
+  }
+
+  export type $DefaultTargetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DefaultTarget"
+    objects: {
+      dailyTarget: Prisma.$DailyTargetPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      value: number
+      dailyId: number
+    }, ExtArgs["result"]["defaultTarget"]>
+    composites: {}
+  }
+
+  type DefaultTargetGetPayload<S extends boolean | null | undefined | DefaultTargetDefaultArgs> = $Result.GetResult<Prisma.$DefaultTargetPayload, S>
+
+  type DefaultTargetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DefaultTargetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DefaultTargetCountAggregateInputType | true
+    }
+
+  export interface DefaultTargetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DefaultTarget'], meta: { name: 'DefaultTarget' } }
+    /**
+     * Find zero or one DefaultTarget that matches the filter.
+     * @param {DefaultTargetFindUniqueArgs} args - Arguments to find a DefaultTarget
+     * @example
+     * // Get one DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DefaultTargetFindUniqueArgs>(args: SelectSubset<T, DefaultTargetFindUniqueArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DefaultTarget that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DefaultTargetFindUniqueOrThrowArgs} args - Arguments to find a DefaultTarget
+     * @example
+     * // Get one DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DefaultTargetFindUniqueOrThrowArgs>(args: SelectSubset<T, DefaultTargetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DefaultTarget that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetFindFirstArgs} args - Arguments to find a DefaultTarget
+     * @example
+     * // Get one DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DefaultTargetFindFirstArgs>(args?: SelectSubset<T, DefaultTargetFindFirstArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DefaultTarget that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetFindFirstOrThrowArgs} args - Arguments to find a DefaultTarget
+     * @example
+     * // Get one DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DefaultTargetFindFirstOrThrowArgs>(args?: SelectSubset<T, DefaultTargetFindFirstOrThrowArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DefaultTargets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DefaultTargets
+     * const defaultTargets = await prisma.defaultTarget.findMany()
+     * 
+     * // Get first 10 DefaultTargets
+     * const defaultTargets = await prisma.defaultTarget.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const defaultTargetWithIdOnly = await prisma.defaultTarget.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DefaultTargetFindManyArgs>(args?: SelectSubset<T, DefaultTargetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DefaultTarget.
+     * @param {DefaultTargetCreateArgs} args - Arguments to create a DefaultTarget.
+     * @example
+     * // Create one DefaultTarget
+     * const DefaultTarget = await prisma.defaultTarget.create({
+     *   data: {
+     *     // ... data to create a DefaultTarget
+     *   }
+     * })
+     * 
+     */
+    create<T extends DefaultTargetCreateArgs>(args: SelectSubset<T, DefaultTargetCreateArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DefaultTargets.
+     * @param {DefaultTargetCreateManyArgs} args - Arguments to create many DefaultTargets.
+     * @example
+     * // Create many DefaultTargets
+     * const defaultTarget = await prisma.defaultTarget.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DefaultTargetCreateManyArgs>(args?: SelectSubset<T, DefaultTargetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DefaultTargets and returns the data saved in the database.
+     * @param {DefaultTargetCreateManyAndReturnArgs} args - Arguments to create many DefaultTargets.
+     * @example
+     * // Create many DefaultTargets
+     * const defaultTarget = await prisma.defaultTarget.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DefaultTargets and only return the `id`
+     * const defaultTargetWithIdOnly = await prisma.defaultTarget.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DefaultTargetCreateManyAndReturnArgs>(args?: SelectSubset<T, DefaultTargetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DefaultTarget.
+     * @param {DefaultTargetDeleteArgs} args - Arguments to delete one DefaultTarget.
+     * @example
+     * // Delete one DefaultTarget
+     * const DefaultTarget = await prisma.defaultTarget.delete({
+     *   where: {
+     *     // ... filter to delete one DefaultTarget
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DefaultTargetDeleteArgs>(args: SelectSubset<T, DefaultTargetDeleteArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DefaultTarget.
+     * @param {DefaultTargetUpdateArgs} args - Arguments to update one DefaultTarget.
+     * @example
+     * // Update one DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DefaultTargetUpdateArgs>(args: SelectSubset<T, DefaultTargetUpdateArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DefaultTargets.
+     * @param {DefaultTargetDeleteManyArgs} args - Arguments to filter DefaultTargets to delete.
+     * @example
+     * // Delete a few DefaultTargets
+     * const { count } = await prisma.defaultTarget.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DefaultTargetDeleteManyArgs>(args?: SelectSubset<T, DefaultTargetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DefaultTargets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DefaultTargets
+     * const defaultTarget = await prisma.defaultTarget.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DefaultTargetUpdateManyArgs>(args: SelectSubset<T, DefaultTargetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DefaultTargets and returns the data updated in the database.
+     * @param {DefaultTargetUpdateManyAndReturnArgs} args - Arguments to update many DefaultTargets.
+     * @example
+     * // Update many DefaultTargets
+     * const defaultTarget = await prisma.defaultTarget.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DefaultTargets and only return the `id`
+     * const defaultTargetWithIdOnly = await prisma.defaultTarget.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DefaultTargetUpdateManyAndReturnArgs>(args: SelectSubset<T, DefaultTargetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DefaultTarget.
+     * @param {DefaultTargetUpsertArgs} args - Arguments to update or create a DefaultTarget.
+     * @example
+     * // Update or create a DefaultTarget
+     * const defaultTarget = await prisma.defaultTarget.upsert({
+     *   create: {
+     *     // ... data to create a DefaultTarget
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DefaultTarget we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DefaultTargetUpsertArgs>(args: SelectSubset<T, DefaultTargetUpsertArgs<ExtArgs>>): Prisma__DefaultTargetClient<$Result.GetResult<Prisma.$DefaultTargetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DefaultTargets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetCountArgs} args - Arguments to filter DefaultTargets to count.
+     * @example
+     * // Count the number of DefaultTargets
+     * const count = await prisma.defaultTarget.count({
+     *   where: {
+     *     // ... the filter for the DefaultTargets we want to count
+     *   }
+     * })
+    **/
+    count<T extends DefaultTargetCountArgs>(
+      args?: Subset<T, DefaultTargetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DefaultTargetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DefaultTarget.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DefaultTargetAggregateArgs>(args: Subset<T, DefaultTargetAggregateArgs>): Prisma.PrismaPromise<GetDefaultTargetAggregateType<T>>
+
+    /**
+     * Group by DefaultTarget.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DefaultTargetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DefaultTargetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DefaultTargetGroupByArgs['orderBy'] }
+        : { orderBy?: DefaultTargetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DefaultTargetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDefaultTargetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DefaultTarget model
+   */
+  readonly fields: DefaultTargetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DefaultTarget.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DefaultTargetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    dailyTarget<T extends DailyTargetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DailyTargetDefaultArgs<ExtArgs>>): Prisma__DailyTargetClient<$Result.GetResult<Prisma.$DailyTargetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DefaultTarget model
+   */
+  interface DefaultTargetFieldRefs {
+    readonly id: FieldRef<"DefaultTarget", 'Int'>
+    readonly value: FieldRef<"DefaultTarget", 'Int'>
+    readonly dailyId: FieldRef<"DefaultTarget", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DefaultTarget findUnique
+   */
+  export type DefaultTargetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which DefaultTarget to fetch.
+     */
+    where: DefaultTargetWhereUniqueInput
+  }
+
+  /**
+   * DefaultTarget findUniqueOrThrow
+   */
+  export type DefaultTargetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which DefaultTarget to fetch.
+     */
+    where: DefaultTargetWhereUniqueInput
+  }
+
+  /**
+   * DefaultTarget findFirst
+   */
+  export type DefaultTargetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which DefaultTarget to fetch.
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DefaultTargets to fetch.
+     */
+    orderBy?: DefaultTargetOrderByWithRelationInput | DefaultTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DefaultTargets.
+     */
+    cursor?: DefaultTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DefaultTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DefaultTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DefaultTargets.
+     */
+    distinct?: DefaultTargetScalarFieldEnum | DefaultTargetScalarFieldEnum[]
+  }
+
+  /**
+   * DefaultTarget findFirstOrThrow
+   */
+  export type DefaultTargetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which DefaultTarget to fetch.
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DefaultTargets to fetch.
+     */
+    orderBy?: DefaultTargetOrderByWithRelationInput | DefaultTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DefaultTargets.
+     */
+    cursor?: DefaultTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DefaultTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DefaultTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DefaultTargets.
+     */
+    distinct?: DefaultTargetScalarFieldEnum | DefaultTargetScalarFieldEnum[]
+  }
+
+  /**
+   * DefaultTarget findMany
+   */
+  export type DefaultTargetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which DefaultTargets to fetch.
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DefaultTargets to fetch.
+     */
+    orderBy?: DefaultTargetOrderByWithRelationInput | DefaultTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DefaultTargets.
+     */
+    cursor?: DefaultTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DefaultTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DefaultTargets.
+     */
+    skip?: number
+    distinct?: DefaultTargetScalarFieldEnum | DefaultTargetScalarFieldEnum[]
+  }
+
+  /**
+   * DefaultTarget create
+   */
+  export type DefaultTargetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DefaultTarget.
+     */
+    data: XOR<DefaultTargetCreateInput, DefaultTargetUncheckedCreateInput>
+  }
+
+  /**
+   * DefaultTarget createMany
+   */
+  export type DefaultTargetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DefaultTargets.
+     */
+    data: DefaultTargetCreateManyInput | DefaultTargetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DefaultTarget createManyAndReturn
+   */
+  export type DefaultTargetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * The data used to create many DefaultTargets.
+     */
+    data: DefaultTargetCreateManyInput | DefaultTargetCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DefaultTarget update
+   */
+  export type DefaultTargetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DefaultTarget.
+     */
+    data: XOR<DefaultTargetUpdateInput, DefaultTargetUncheckedUpdateInput>
+    /**
+     * Choose, which DefaultTarget to update.
+     */
+    where: DefaultTargetWhereUniqueInput
+  }
+
+  /**
+   * DefaultTarget updateMany
+   */
+  export type DefaultTargetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DefaultTargets.
+     */
+    data: XOR<DefaultTargetUpdateManyMutationInput, DefaultTargetUncheckedUpdateManyInput>
+    /**
+     * Filter which DefaultTargets to update
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * Limit how many DefaultTargets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DefaultTarget updateManyAndReturn
+   */
+  export type DefaultTargetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * The data used to update DefaultTargets.
+     */
+    data: XOR<DefaultTargetUpdateManyMutationInput, DefaultTargetUncheckedUpdateManyInput>
+    /**
+     * Filter which DefaultTargets to update
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * Limit how many DefaultTargets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DefaultTarget upsert
+   */
+  export type DefaultTargetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DefaultTarget to update in case it exists.
+     */
+    where: DefaultTargetWhereUniqueInput
+    /**
+     * In case the DefaultTarget found by the `where` argument doesn't exist, create a new DefaultTarget with this data.
+     */
+    create: XOR<DefaultTargetCreateInput, DefaultTargetUncheckedCreateInput>
+    /**
+     * In case the DefaultTarget was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DefaultTargetUpdateInput, DefaultTargetUncheckedUpdateInput>
+  }
+
+  /**
+   * DefaultTarget delete
+   */
+  export type DefaultTargetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
+    /**
+     * Filter which DefaultTarget to delete.
+     */
+    where: DefaultTargetWhereUniqueInput
+  }
+
+  /**
+   * DefaultTarget deleteMany
+   */
+  export type DefaultTargetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DefaultTargets to delete
+     */
+    where?: DefaultTargetWhereInput
+    /**
+     * Limit how many DefaultTargets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DefaultTarget without action
+   */
+  export type DefaultTargetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DefaultTarget
+     */
+    select?: DefaultTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DefaultTarget
+     */
+    omit?: DefaultTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DefaultTargetInclude<ExtArgs> | null
   }
 
 
@@ -5748,6 +6974,15 @@ export namespace Prisma {
   };
 
   export type DailyTargetScalarFieldEnum = (typeof DailyTargetScalarFieldEnum)[keyof typeof DailyTargetScalarFieldEnum]
+
+
+  export const DefaultTargetScalarFieldEnum: {
+    id: 'id',
+    value: 'value',
+    dailyId: 'dailyId'
+  };
+
+  export type DefaultTargetScalarFieldEnum = (typeof DefaultTargetScalarFieldEnum)[keyof typeof DefaultTargetScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6025,6 +7260,7 @@ export namespace Prisma {
     target?: IntFilter<"DailyTarget"> | number
     userId?: IntFilter<"DailyTarget"> | number
     date?: DateTimeFilter<"DailyTarget"> | Date | string
+    defaultTarget?: DefaultTargetListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -6033,6 +7269,7 @@ export namespace Prisma {
     target?: SortOrder
     userId?: SortOrder
     date?: SortOrder
+    defaultTarget?: DefaultTargetOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -6045,6 +7282,7 @@ export namespace Prisma {
     target?: IntFilter<"DailyTarget"> | number
     userId?: IntFilter<"DailyTarget"> | number
     date?: DateTimeFilter<"DailyTarget"> | Date | string
+    defaultTarget?: DefaultTargetListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId_date">
 
@@ -6068,6 +7306,53 @@ export namespace Prisma {
     target?: IntWithAggregatesFilter<"DailyTarget"> | number
     userId?: IntWithAggregatesFilter<"DailyTarget"> | number
     date?: DateTimeWithAggregatesFilter<"DailyTarget"> | Date | string
+  }
+
+  export type DefaultTargetWhereInput = {
+    AND?: DefaultTargetWhereInput | DefaultTargetWhereInput[]
+    OR?: DefaultTargetWhereInput[]
+    NOT?: DefaultTargetWhereInput | DefaultTargetWhereInput[]
+    id?: IntFilter<"DefaultTarget"> | number
+    value?: IntFilter<"DefaultTarget"> | number
+    dailyId?: IntFilter<"DefaultTarget"> | number
+    dailyTarget?: XOR<DailyTargetScalarRelationFilter, DailyTargetWhereInput>
+  }
+
+  export type DefaultTargetOrderByWithRelationInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+    dailyTarget?: DailyTargetOrderByWithRelationInput
+  }
+
+  export type DefaultTargetWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DefaultTargetWhereInput | DefaultTargetWhereInput[]
+    OR?: DefaultTargetWhereInput[]
+    NOT?: DefaultTargetWhereInput | DefaultTargetWhereInput[]
+    value?: IntFilter<"DefaultTarget"> | number
+    dailyId?: IntFilter<"DefaultTarget"> | number
+    dailyTarget?: XOR<DailyTargetScalarRelationFilter, DailyTargetWhereInput>
+  }, "id">
+
+  export type DefaultTargetOrderByWithAggregationInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+    _count?: DefaultTargetCountOrderByAggregateInput
+    _avg?: DefaultTargetAvgOrderByAggregateInput
+    _max?: DefaultTargetMaxOrderByAggregateInput
+    _min?: DefaultTargetMinOrderByAggregateInput
+    _sum?: DefaultTargetSumOrderByAggregateInput
+  }
+
+  export type DefaultTargetScalarWhereWithAggregatesInput = {
+    AND?: DefaultTargetScalarWhereWithAggregatesInput | DefaultTargetScalarWhereWithAggregatesInput[]
+    OR?: DefaultTargetScalarWhereWithAggregatesInput[]
+    NOT?: DefaultTargetScalarWhereWithAggregatesInput | DefaultTargetScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DefaultTarget"> | number
+    value?: IntWithAggregatesFilter<"DefaultTarget"> | number
+    dailyId?: IntWithAggregatesFilter<"DefaultTarget"> | number
   }
 
   export type UserCreateInput = {
@@ -6256,6 +7541,7 @@ export namespace Prisma {
   export type DailyTargetCreateInput = {
     target: number
     date: Date | string
+    defaultTarget?: DefaultTargetCreateNestedManyWithoutDailyTargetInput
     user: UserCreateNestedOneWithoutDailyTargetInput
   }
 
@@ -6264,11 +7550,13 @@ export namespace Prisma {
     target: number
     userId: number
     date: Date | string
+    defaultTarget?: DefaultTargetUncheckedCreateNestedManyWithoutDailyTargetInput
   }
 
   export type DailyTargetUpdateInput = {
     target?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultTarget?: DefaultTargetUpdateManyWithoutDailyTargetNestedInput
     user?: UserUpdateOneRequiredWithoutDailyTargetNestedInput
   }
 
@@ -6277,6 +7565,7 @@ export namespace Prisma {
     target?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultTarget?: DefaultTargetUncheckedUpdateManyWithoutDailyTargetNestedInput
   }
 
   export type DailyTargetCreateManyInput = {
@@ -6296,6 +7585,44 @@ export namespace Prisma {
     target?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DefaultTargetCreateInput = {
+    value: number
+    dailyTarget: DailyTargetCreateNestedOneWithoutDefaultTargetInput
+  }
+
+  export type DefaultTargetUncheckedCreateInput = {
+    id?: number
+    value: number
+    dailyId: number
+  }
+
+  export type DefaultTargetUpdateInput = {
+    value?: IntFieldUpdateOperationsInput | number
+    dailyTarget?: DailyTargetUpdateOneRequiredWithoutDefaultTargetNestedInput
+  }
+
+  export type DefaultTargetUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    value?: IntFieldUpdateOperationsInput | number
+    dailyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DefaultTargetCreateManyInput = {
+    id?: number
+    value: number
+    dailyId: number
+  }
+
+  export type DefaultTargetUpdateManyMutationInput = {
+    value?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DefaultTargetUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    value?: IntFieldUpdateOperationsInput | number
+    dailyId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6535,6 +7862,16 @@ export namespace Prisma {
     takaran?: SortOrder
   }
 
+  export type DefaultTargetListRelationFilter = {
+    every?: DefaultTargetWhereInput
+    some?: DefaultTargetWhereInput
+    none?: DefaultTargetWhereInput
+  }
+
+  export type DefaultTargetOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type DailyTargetUserIdDateCompoundUniqueInput = {
     userId: number
     date: Date | string
@@ -6571,6 +7908,41 @@ export namespace Prisma {
     id?: SortOrder
     target?: SortOrder
     userId?: SortOrder
+  }
+
+  export type DailyTargetScalarRelationFilter = {
+    is?: DailyTargetWhereInput
+    isNot?: DailyTargetWhereInput
+  }
+
+  export type DefaultTargetCountOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+  }
+
+  export type DefaultTargetAvgOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+  }
+
+  export type DefaultTargetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+  }
+
+  export type DefaultTargetMinOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
+  }
+
+  export type DefaultTargetSumOrderByAggregateInput = {
+    id?: SortOrder
+    value?: SortOrder
+    dailyId?: SortOrder
   }
 
   export type DailyTargetCreateNestedManyWithoutUserInput = {
@@ -6743,10 +8115,38 @@ export namespace Prisma {
     update?: XOR<XOR<MenuUpdateToOneWithWhereWithoutFoodsInput, MenuUpdateWithoutFoodsInput>, MenuUncheckedUpdateWithoutFoodsInput>
   }
 
+  export type DefaultTargetCreateNestedManyWithoutDailyTargetInput = {
+    create?: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput> | DefaultTargetCreateWithoutDailyTargetInput[] | DefaultTargetUncheckedCreateWithoutDailyTargetInput[]
+    connectOrCreate?: DefaultTargetCreateOrConnectWithoutDailyTargetInput | DefaultTargetCreateOrConnectWithoutDailyTargetInput[]
+    createMany?: DefaultTargetCreateManyDailyTargetInputEnvelope
+    connect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+  }
+
   export type UserCreateNestedOneWithoutDailyTargetInput = {
     create?: XOR<UserCreateWithoutDailyTargetInput, UserUncheckedCreateWithoutDailyTargetInput>
     connectOrCreate?: UserCreateOrConnectWithoutDailyTargetInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type DefaultTargetUncheckedCreateNestedManyWithoutDailyTargetInput = {
+    create?: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput> | DefaultTargetCreateWithoutDailyTargetInput[] | DefaultTargetUncheckedCreateWithoutDailyTargetInput[]
+    connectOrCreate?: DefaultTargetCreateOrConnectWithoutDailyTargetInput | DefaultTargetCreateOrConnectWithoutDailyTargetInput[]
+    createMany?: DefaultTargetCreateManyDailyTargetInputEnvelope
+    connect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+  }
+
+  export type DefaultTargetUpdateManyWithoutDailyTargetNestedInput = {
+    create?: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput> | DefaultTargetCreateWithoutDailyTargetInput[] | DefaultTargetUncheckedCreateWithoutDailyTargetInput[]
+    connectOrCreate?: DefaultTargetCreateOrConnectWithoutDailyTargetInput | DefaultTargetCreateOrConnectWithoutDailyTargetInput[]
+    upsert?: DefaultTargetUpsertWithWhereUniqueWithoutDailyTargetInput | DefaultTargetUpsertWithWhereUniqueWithoutDailyTargetInput[]
+    createMany?: DefaultTargetCreateManyDailyTargetInputEnvelope
+    set?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    disconnect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    delete?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    connect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    update?: DefaultTargetUpdateWithWhereUniqueWithoutDailyTargetInput | DefaultTargetUpdateWithWhereUniqueWithoutDailyTargetInput[]
+    updateMany?: DefaultTargetUpdateManyWithWhereWithoutDailyTargetInput | DefaultTargetUpdateManyWithWhereWithoutDailyTargetInput[]
+    deleteMany?: DefaultTargetScalarWhereInput | DefaultTargetScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutDailyTargetNestedInput = {
@@ -6755,6 +8155,34 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutDailyTargetInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyTargetInput, UserUpdateWithoutDailyTargetInput>, UserUncheckedUpdateWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetUncheckedUpdateManyWithoutDailyTargetNestedInput = {
+    create?: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput> | DefaultTargetCreateWithoutDailyTargetInput[] | DefaultTargetUncheckedCreateWithoutDailyTargetInput[]
+    connectOrCreate?: DefaultTargetCreateOrConnectWithoutDailyTargetInput | DefaultTargetCreateOrConnectWithoutDailyTargetInput[]
+    upsert?: DefaultTargetUpsertWithWhereUniqueWithoutDailyTargetInput | DefaultTargetUpsertWithWhereUniqueWithoutDailyTargetInput[]
+    createMany?: DefaultTargetCreateManyDailyTargetInputEnvelope
+    set?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    disconnect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    delete?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    connect?: DefaultTargetWhereUniqueInput | DefaultTargetWhereUniqueInput[]
+    update?: DefaultTargetUpdateWithWhereUniqueWithoutDailyTargetInput | DefaultTargetUpdateWithWhereUniqueWithoutDailyTargetInput[]
+    updateMany?: DefaultTargetUpdateManyWithWhereWithoutDailyTargetInput | DefaultTargetUpdateManyWithWhereWithoutDailyTargetInput[]
+    deleteMany?: DefaultTargetScalarWhereInput | DefaultTargetScalarWhereInput[]
+  }
+
+  export type DailyTargetCreateNestedOneWithoutDefaultTargetInput = {
+    create?: XOR<DailyTargetCreateWithoutDefaultTargetInput, DailyTargetUncheckedCreateWithoutDefaultTargetInput>
+    connectOrCreate?: DailyTargetCreateOrConnectWithoutDefaultTargetInput
+    connect?: DailyTargetWhereUniqueInput
+  }
+
+  export type DailyTargetUpdateOneRequiredWithoutDefaultTargetNestedInput = {
+    create?: XOR<DailyTargetCreateWithoutDefaultTargetInput, DailyTargetUncheckedCreateWithoutDefaultTargetInput>
+    connectOrCreate?: DailyTargetCreateOrConnectWithoutDefaultTargetInput
+    upsert?: DailyTargetUpsertWithoutDefaultTargetInput
+    connect?: DailyTargetWhereUniqueInput
+    update?: XOR<XOR<DailyTargetUpdateToOneWithWhereWithoutDefaultTargetInput, DailyTargetUpdateWithoutDefaultTargetInput>, DailyTargetUncheckedUpdateWithoutDefaultTargetInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6854,12 +8282,14 @@ export namespace Prisma {
   export type DailyTargetCreateWithoutUserInput = {
     target: number
     date: Date | string
+    defaultTarget?: DefaultTargetCreateNestedManyWithoutDailyTargetInput
   }
 
   export type DailyTargetUncheckedCreateWithoutUserInput = {
     id?: number
     target: number
     date: Date | string
+    defaultTarget?: DefaultTargetUncheckedCreateNestedManyWithoutDailyTargetInput
   }
 
   export type DailyTargetCreateOrConnectWithoutUserInput = {
@@ -7099,6 +8529,25 @@ export namespace Prisma {
     hari?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DefaultTargetCreateWithoutDailyTargetInput = {
+    value: number
+  }
+
+  export type DefaultTargetUncheckedCreateWithoutDailyTargetInput = {
+    id?: number
+    value: number
+  }
+
+  export type DefaultTargetCreateOrConnectWithoutDailyTargetInput = {
+    where: DefaultTargetWhereUniqueInput
+    create: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetCreateManyDailyTargetInputEnvelope = {
+    data: DefaultTargetCreateManyDailyTargetInput | DefaultTargetCreateManyDailyTargetInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserCreateWithoutDailyTargetInput = {
     email: string
     username: string
@@ -7121,6 +8570,31 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutDailyTargetInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutDailyTargetInput, UserUncheckedCreateWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetUpsertWithWhereUniqueWithoutDailyTargetInput = {
+    where: DefaultTargetWhereUniqueInput
+    update: XOR<DefaultTargetUpdateWithoutDailyTargetInput, DefaultTargetUncheckedUpdateWithoutDailyTargetInput>
+    create: XOR<DefaultTargetCreateWithoutDailyTargetInput, DefaultTargetUncheckedCreateWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetUpdateWithWhereUniqueWithoutDailyTargetInput = {
+    where: DefaultTargetWhereUniqueInput
+    data: XOR<DefaultTargetUpdateWithoutDailyTargetInput, DefaultTargetUncheckedUpdateWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetUpdateManyWithWhereWithoutDailyTargetInput = {
+    where: DefaultTargetScalarWhereInput
+    data: XOR<DefaultTargetUpdateManyMutationInput, DefaultTargetUncheckedUpdateManyWithoutDailyTargetInput>
+  }
+
+  export type DefaultTargetScalarWhereInput = {
+    AND?: DefaultTargetScalarWhereInput | DefaultTargetScalarWhereInput[]
+    OR?: DefaultTargetScalarWhereInput[]
+    NOT?: DefaultTargetScalarWhereInput | DefaultTargetScalarWhereInput[]
+    id?: IntFilter<"DefaultTarget"> | number
+    value?: IntFilter<"DefaultTarget"> | number
+    dailyId?: IntFilter<"DefaultTarget"> | number
   }
 
   export type UserUpsertWithoutDailyTargetInput = {
@@ -7153,6 +8627,48 @@ export namespace Prisma {
     menu?: MenuUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type DailyTargetCreateWithoutDefaultTargetInput = {
+    target: number
+    date: Date | string
+    user: UserCreateNestedOneWithoutDailyTargetInput
+  }
+
+  export type DailyTargetUncheckedCreateWithoutDefaultTargetInput = {
+    id?: number
+    target: number
+    userId: number
+    date: Date | string
+  }
+
+  export type DailyTargetCreateOrConnectWithoutDefaultTargetInput = {
+    where: DailyTargetWhereUniqueInput
+    create: XOR<DailyTargetCreateWithoutDefaultTargetInput, DailyTargetUncheckedCreateWithoutDefaultTargetInput>
+  }
+
+  export type DailyTargetUpsertWithoutDefaultTargetInput = {
+    update: XOR<DailyTargetUpdateWithoutDefaultTargetInput, DailyTargetUncheckedUpdateWithoutDefaultTargetInput>
+    create: XOR<DailyTargetCreateWithoutDefaultTargetInput, DailyTargetUncheckedCreateWithoutDefaultTargetInput>
+    where?: DailyTargetWhereInput
+  }
+
+  export type DailyTargetUpdateToOneWithWhereWithoutDefaultTargetInput = {
+    where?: DailyTargetWhereInput
+    data: XOR<DailyTargetUpdateWithoutDefaultTargetInput, DailyTargetUncheckedUpdateWithoutDefaultTargetInput>
+  }
+
+  export type DailyTargetUpdateWithoutDefaultTargetInput = {
+    target?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutDailyTargetNestedInput
+  }
+
+  export type DailyTargetUncheckedUpdateWithoutDefaultTargetInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    target?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type DailyTargetCreateManyUserInput = {
     id?: number
     target: number
@@ -7168,12 +8684,14 @@ export namespace Prisma {
   export type DailyTargetUpdateWithoutUserInput = {
     target?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultTarget?: DefaultTargetUpdateManyWithoutDailyTargetNestedInput
   }
 
   export type DailyTargetUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     target?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultTarget?: DefaultTargetUncheckedUpdateManyWithoutDailyTargetNestedInput
   }
 
   export type DailyTargetUncheckedUpdateManyWithoutUserInput = {
@@ -7234,6 +8752,25 @@ export namespace Prisma {
     takaran?: IntFieldUpdateOperationsInput | number
     namaMakanan?: StringFieldUpdateOperationsInput | string
     takaranAwal?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DefaultTargetCreateManyDailyTargetInput = {
+    id?: number
+    value: number
+  }
+
+  export type DefaultTargetUpdateWithoutDailyTargetInput = {
+    value?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DefaultTargetUncheckedUpdateWithoutDailyTargetInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    value?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DefaultTargetUncheckedUpdateManyWithoutDailyTargetInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    value?: IntFieldUpdateOperationsInput | number
   }
 
 

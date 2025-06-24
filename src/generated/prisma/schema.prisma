@@ -40,11 +40,19 @@ model Food {
 }
 
 model DailyTarget {
-  id     Int      @id @default(autoincrement())
-  target Int
-  userId Int
-  date   DateTime
-  user   User     @relation(fields: [userId], references: [id])
+  id            Int             @id @default(autoincrement())
+  target        Int
+  userId        Int
+  date          DateTime
+  defaultTarget DefaultTarget[]
+  user          User            @relation(fields: [userId], references: [id])
 
   @@unique([userId, date])
+}
+
+model DefaultTarget {
+  id          Int         @id @default(autoincrement())
+  value       Int
+  dailyId     Int
+  dailyTarget DailyTarget @relation(fields: [dailyId], references: [id])
 }
