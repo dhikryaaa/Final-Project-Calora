@@ -17,7 +17,7 @@ function InfoCard() {
         </CardHeader>
         <CardContent>
             <div>
-                This value will be used as the baseline for goals in each day in this app. You can change this value any time
+                This value will be used as the baseline for this day only. This means that you would need to input the goal for each day.
             </div>
         </CardContent>
     </Card>

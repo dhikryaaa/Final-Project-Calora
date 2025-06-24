@@ -43,7 +43,7 @@ function MainGoal() {
     <div className='space-y-4'>
       <div className='space-y-2'>
         <h1 className='text-xl'>
-          Set Calorie Goal
+          Set Calorie Goal <span className='text-sm text-muted-foreground mx-1'>(for this day)</span>
         </h1>
         <Input
         className='w-fit h-10'
